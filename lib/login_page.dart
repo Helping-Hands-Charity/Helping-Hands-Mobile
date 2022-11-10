@@ -1,4 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:helpinghands/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -58,6 +61,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
+                      hintText: "Your email Id",
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: Color.fromARGB(255, 221, 40, 152),
+                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.white, width: 1.0),
@@ -90,6 +98,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
+                      hintText: "Your Password",
+                      prefixIcon: Icon(
+                        Icons.password_sharp,
+                        color: Color.fromARGB(255, 221, 40, 152),
+                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.white, width: 0.6),
@@ -149,20 +162,22 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(height: w * 0.09),
           RichText(
             text: TextSpan(
-                text: "Don\'n have an account?",
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 20,
-                ),
-                children: [
-                  TextSpan(
+              text: "Don\'n have an account?",
+              style: TextStyle(
+                color: Colors.grey[500],
+                fontSize: 20,
+              ),
+              children: [
+                TextSpan(
                     text: "Create",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
-                  )
-                ]),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.to(() => SignUpPage())),
+              ],
+            ),
           )
         ],
       ),
