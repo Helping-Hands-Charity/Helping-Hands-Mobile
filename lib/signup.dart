@@ -1,12 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helpinghands/auth_controller.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     List images = ["g.png", "t.png", "f.png"];
 
     double w = MediaQuery.of(context).size.width;
@@ -18,7 +22,7 @@ class SignUpPage extends StatelessWidget {
         children: [
           Container(
             width: w,
-            height: h * 0.42,
+            height: h * 0.2,
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("img/signup.png"), fit: BoxFit.cover),
@@ -26,7 +30,7 @@ class SignUpPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: h * 0.15,
+                  height: h * 0.2,
                 ),
                 CircleAvatar(
                   backgroundColor: Colors.white70,
@@ -59,6 +63,7 @@ class SignUpPage extends StatelessWidget {
                     ],
                   ),
                   child: TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Your email Id",
                       prefixIcon: Icon(
@@ -96,6 +101,7 @@ class SignUpPage extends StatelessWidget {
                     ],
                   ),
                   child: TextField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       hintText: "Your password",
                       prefixIcon: Icon(
@@ -139,21 +145,27 @@ class SignUpPage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            width: w * 0.5,
-            height: h * 0.06,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
-            ),
-            child: Center(
-              child: const Text(
-                "Sign Up",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              AuthController.instance.register(
+                  emailController.text.trim(), passwordController.text.trim());
+            },
+            child: Container(
+              width: w * 0.5,
+              height: h * 0.06,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                    image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
+              ),
+              child: Center(
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

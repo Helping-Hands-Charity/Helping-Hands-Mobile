@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:helpinghands/auth_controller.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  String email;
+  WelcomePage({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class WelcomePage extends StatelessWidget {
                       color: Colors.black54),
                 ),
                 Text(
-                  "a@gmail.com",
+                  email,
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
@@ -87,21 +89,26 @@ class WelcomePage extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          Container(
-            width: w * 0.5,
-            height: h * 0.06,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
-            ),
-            child: Center(
-              child: const Text(
-                "Sign Out",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              AuthController.instance.logout();
+            },
+            child: Container(
+              width: w * 0.5,
+              height: h * 0.06,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                    image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
+              ),
+              child: Center(
+                child: const Text(
+                  "Sign Out",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
