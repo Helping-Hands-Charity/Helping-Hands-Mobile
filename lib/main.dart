@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:helpinghands/auth_controller.dart';
 import 'package:helpinghands/login_page.dart';
 import 'package:helpinghands/signup.dart';
+import 'package:helpinghands/splash_screen.dart';
 import 'package:helpinghands/welcome.dart';
 
 Future<void> main() async {
@@ -32,6 +33,6 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage());
+        home: SplashScreen());
   }
 }
