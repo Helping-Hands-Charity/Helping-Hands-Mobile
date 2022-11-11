@@ -181,13 +181,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               children: [
                 TextSpan(
-                    text: "Create",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(() => SignUpPage())),
+                  text: "Create",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.to(
+                          () => SignUpPage(),
+                        ),
+                ),
               ],
             ),
           )

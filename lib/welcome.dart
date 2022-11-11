@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:helpinghands/auth_controller.dart';
+import 'package:helpinghands/screens/admin_home.dart';
+//import 'package:helpinghands/screens/donor_home.dart';
 
 class WelcomePage extends StatelessWidget {
   String email;
@@ -23,18 +27,13 @@ class WelcomePage extends StatelessWidget {
             height: h * 0.42,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("img/signup.png"), fit: BoxFit.cover),
+                  image: AssetImage("img/welcome.jpg"), fit: BoxFit.cover),
             ),
             child: Column(
               children: [
                 SizedBox(
                   height: h * 0.15,
                 ),
-                CircleAvatar(
-                  backgroundColor: Colors.white70,
-                  radius: 50,
-                  backgroundImage: AssetImage("img/user.png"),
-                )
               ],
             ),
           ),
@@ -65,10 +64,10 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 150,
+            height: 25,
           ),
           Container(
-            width: w * 0.5,
+            width: w * 0.7,
             height: h * 0.06,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
@@ -76,15 +75,50 @@ class WelcomePage extends StatelessWidget {
                   image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
             ),
             child: Center(
-              child: const Text(
-                "Get Started",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: RichText(
+                text: TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.to(
+                          () => AdminHome(),
+                        ),
+                  text: "I want to manage",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Color.fromARGB(120, 248, 237, 241),
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            width: w * 0.7,
+            height: h * 0.06,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(
+                  image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
+            ),
+            child: Center(
+              child: RichText(
+                text: TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.to(
+                          () => AdminHome(),
+                        ),
+                  text: "I want to donate",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Color.fromARGB(120, 248, 237, 241),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 50,
           ),
           SizedBox(
             height: 50,
@@ -107,7 +141,7 @@ class WelcomePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(120, 247, 227, 234),
                   ),
                 ),
               ),
