@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:helpinghands/auth_controller.dart';
 import 'package:helpinghands/screens/admin_home.dart';
-//import 'package:helpinghands/screens/donor_home.dart';
+import 'package:helpinghands/screens/donor_home.dart';
 
 class WelcomePage extends StatelessWidget {
   String email;
@@ -106,7 +106,7 @@ class WelcomePage extends StatelessWidget {
                 text: TextSpan(
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => Get.to(
-                          () => AdminHome(),
+                          () => DonorHome(),
                         ),
                   text: "I want to donate",
                   style: TextStyle(
