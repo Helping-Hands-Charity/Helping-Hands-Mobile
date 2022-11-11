@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:helpinghands/auth_controller.dart';
 import 'package:helpinghands/screens/admin_home.dart';
 import 'package:helpinghands/screens/donor_home.dart';
+import 'package:helpinghands/screens/volunteer_home.dart';
 
 class WelcomePage extends StatelessWidget {
   String email;
@@ -91,7 +92,7 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
           ),
           Container(
             width: w * 0.7,
@@ -118,7 +119,34 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
+          ),
+          Container(
+            width: w * 0.7,
+            height: h * 0.06,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(
+                  image: AssetImage("img/login-btn.png"), fit: BoxFit.cover),
+            ),
+            child: Center(
+              child: RichText(
+                text: TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.to(
+                          () => VolunteerHome(),
+                        ),
+                  text: "I want to volunteer",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Color.fromARGB(120, 248, 237, 241),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
           ),
           SizedBox(
             height: 50,
