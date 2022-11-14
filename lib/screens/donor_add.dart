@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:helpinghands/controller/data_controller.dart';
-import 'package:helpinghands/screens/all_volunteers.dart';
+import 'package:helpinghands/screens/all_charities.dart';
 import 'package:helpinghands/widgets/btn_widgets.dart';
 import 'package:helpinghands/widgets/error_warning_ms.dart';
 import 'package:helpinghands/widgets/textfield_widget.dart';
 import 'package:get/get.dart';
 
-class VolunteerAdd extends StatelessWidget {
-  const VolunteerAdd({super.key});
+class DonorAdd extends StatelessWidget {
+  const DonorAdd({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +17,21 @@ class VolunteerAdd extends StatelessWidget {
 
     bool _dataValidation() {
       if (nameController.text.trim() == '') {
-        Message.charityErrorOrWarning("Task Name", "Task name is empty");
+        Message.charityErrorOrWarning(
+            "Donation Name", "Donation name is empty");
 
         return false;
       } else if (detailController.text.trim() == '') {
-        Message.charityErrorOrWarning("Task Detail", "Task detail is empty");
+        Message.charityErrorOrWarning(
+            "Donation Detail", "Donation detail is empty");
         return false;
       } else if (nameController.text.length <= 10) {
         Message.charityErrorOrWarning(
-            "Task Name", "Task name should be at least 10 characters");
+            "Donation Name", "Donation name should be at least 10 characters");
         return false;
       } else if (detailController.text.length <= 10) {
-        Message.charityErrorOrWarning(
-            "Task Detail", "Task detail should be at least 20 characters");
+        Message.charityErrorOrWarning("Charity Detail",
+            "Donation detail should be at least 20 characters");
         return false;
       }
       return true;
@@ -43,7 +45,7 @@ class VolunteerAdd extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("img/addVolunteer.png"),
+            image: AssetImage("img/addDonor.png"),
           ),
         ),
         child: Column(
@@ -67,14 +69,14 @@ class VolunteerAdd extends StatelessWidget {
               children: [
                 TextFieldWidget(
                   textController: nameController,
-                  hintText: "Task Title",
+                  hintText: "Donation Title",
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFieldWidget(
                   textController: detailController,
-                  hintText: "Task Details",
+                  hintText: "Donation Details",
                   borderRadius: 15,
                   maxLines: 3,
                 ),
@@ -88,7 +90,7 @@ class VolunteerAdd extends StatelessWidget {
                           nameController.text.trim(),
                           detailController.text.trim());
 
-                      Get.to(() => AllVolunteers(),
+                      Get.to(() => AllCharities(),
                           transition: Transition.circularReveal);
                     }
                   },

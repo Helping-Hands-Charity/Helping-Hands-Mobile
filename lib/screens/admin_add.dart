@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:helpinghands/controller/data_controller.dart';
+import 'package:helpinghands/screens/all_charities.dart';
 import 'package:helpinghands/widgets/btn_widgets.dart';
+import 'package:helpinghands/widgets/error_warning_ms.dart';
 import 'package:helpinghands/widgets/textfield_widget.dart';
+import 'package:get/get.dart';
 
 class AdminAdd extends StatelessWidget {
   const AdminAdd({super.key});
@@ -10,6 +14,28 @@ class AdminAdd extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
     TextEditingController detailController = TextEditingController();
+
+    bool _dataValidation() {
+      if (nameController.text.trim() == '') {
+        Message.charityErrorOrWarning("Charity Name", "Charity name is empty");
+
+        return false;
+      } else if (detailController.text.trim() == '') {
+        Message.charityErrorOrWarning(
+            "Charity Detail", "Charity detail is empty");
+        return false;
+      } else if (nameController.text.length <= 10) {
+        Message.charityErrorOrWarning(
+            "Charity Name", "Charity name should be at least 10 characters");
+        return false;
+      } else if (detailController.text.length <= 10) {
+        Message.charityErrorOrWarning("Charity Detail",
+            "Charity detail should be at least 20 characters");
+        return false;
+      }
+      return true;
+    }
+
     return Scaffold(
       body: Container(
         width: double.maxFinite,
@@ -18,7 +44,7 @@ class AdminAdd extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("img/adminAdd.jpg"),
+            image: AssetImage("img/addCharity.png"),
           ),
         ),
         child: Column(
@@ -28,10 +54,12 @@ class AdminAdd extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   icon: Icon(Icons.arrow_back, color: Colors.black54),
                 )
               ],
@@ -54,10 +82,22 @@ class AdminAdd extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                ButtonWidgets(
-                    backgroundcolor: Colors.black54,
-                    text: "Add",
-                    textColor: Colors.white)
+                GestureDetector(
+                  onTap: () {
+                    if (_dataValidation()) {
+                      Get.find<DataController>().postData(
+                          nameController.text.trim(),
+                          detailController.text.trim());
+
+                      Get.to(() => AllCharities(),
+                          transition: Transition.circularReveal);
+                    }
+                  },
+                  child: ButtonWidgets(
+                      backgroundcolor: Colors.black54,
+                      text: "Add",
+                      textColor: Colors.white),
+                )
               ],
             ),
             SizedBox(

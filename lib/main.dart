@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart ';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helpinghands/auth_controller.dart';
+import 'package:helpinghands/controller/data_controller.dart';
 import 'package:helpinghands/login_page.dart';
 import 'package:helpinghands/signup.dart';
 import 'package:helpinghands/splash_screen.dart';
@@ -16,9 +17,16 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  loadData() async {
+    await Get.find<DataController>().getData();
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => DataController());
+    loadData();
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

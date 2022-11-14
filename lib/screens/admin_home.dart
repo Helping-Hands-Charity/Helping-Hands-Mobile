@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:helpinghands/screens/admin_add.dart';
+import 'package:helpinghands/screens/all_charities.dart';
 import 'package:helpinghands/widgets/btn_widgets.dart';
+import 'package:get/get.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -40,18 +43,34 @@ class _AdminHomeState extends State<AdminHome> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 1.8,
             ),
-            ButtonWidgets(
-              backgroundcolor: Colors.black54,
-              text: "Add Charity",
-              textColor: Color.fromARGB(137, 255, 255, 255),
+            InkWell(
+              onTap: () {
+                Get.to(
+                  () => AdminAdd(),
+                  transition: Transition.zoom,
+                  duration: Duration(milliseconds: 500),
+                );
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Colors.black54,
+                text: "Add Charity",
+                textColor: Color.fromARGB(137, 255, 255, 255),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
-            ButtonWidgets(
-              backgroundcolor: Color.fromARGB(137, 187, 186, 186),
-              text: "View All",
-              textColor: Color.fromARGB(136, 44, 44, 44),
+            InkWell(
+              onTap: () {
+                Get.to(() => AllCharities(),
+                    transition: Transition.fade,
+                    duration: Duration(seconds: 1));
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Color.fromARGB(137, 187, 186, 186),
+                text: "View All",
+                textColor: Color.fromARGB(136, 44, 44, 44),
+              ),
             ),
           ],
         ),

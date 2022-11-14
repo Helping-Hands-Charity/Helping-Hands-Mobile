@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:helpinghands/screens/all_volunteers.dart';
+import 'package:helpinghands/screens/volunteer_add.dart';
 
 import '../widgets/btn_widgets.dart';
 
@@ -43,18 +46,34 @@ class _VolunteerHomeState extends State<VolunteerHome> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 1.8,
             ),
-            ButtonWidgets(
-              backgroundcolor: Colors.black54,
-              text: "Add Volunteer",
-              textColor: Color.fromARGB(137, 255, 255, 255),
+            InkWell(
+              onTap: () {
+                Get.to(
+                  () => VolunteerAdd(),
+                  transition: Transition.zoom,
+                  duration: Duration(milliseconds: 500),
+                );
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Colors.black54,
+                text: "Add Task",
+                textColor: Color.fromARGB(137, 255, 255, 255),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
-            ButtonWidgets(
-              backgroundcolor: Color.fromARGB(137, 187, 186, 186),
-              text: "View All",
-              textColor: Color.fromARGB(136, 44, 44, 44),
+            InkWell(
+              onTap: () {
+                Get.to(() => AllVolunteers(),
+                    transition: Transition.fade,
+                    duration: Duration(seconds: 1));
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Color.fromARGB(137, 187, 186, 186),
+                text: "View All",
+                textColor: Color.fromARGB(136, 44, 44, 44),
+              ),
             ),
           ],
         ),

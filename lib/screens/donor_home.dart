@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:helpinghands/screens/all_donors.dart';
 
 import '../widgets/btn_widgets.dart';
+import 'all_charities.dart';
+import 'donor_add.dart';
 
 class DonorHome extends StatefulWidget {
   const DonorHome({super.key});
@@ -43,18 +47,34 @@ class _DonorHomeState extends State<DonorHome> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 1.8,
             ),
-            ButtonWidgets(
-              backgroundcolor: Colors.black54,
-              text: "Add Charity",
-              textColor: Color.fromARGB(137, 255, 255, 255),
+            InkWell(
+              onTap: () {
+                Get.to(
+                  () => DonorAdd(),
+                  transition: Transition.zoom,
+                  duration: Duration(milliseconds: 500),
+                );
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Colors.black54,
+                text: "Add Donation",
+                textColor: Color.fromARGB(137, 255, 255, 255),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
-            ButtonWidgets(
-              backgroundcolor: Color.fromARGB(137, 187, 186, 186),
-              text: "View All",
-              textColor: Color.fromARGB(136, 44, 44, 44),
+            InkWell(
+              onTap: () {
+                Get.to(() => AllDonors(),
+                    transition: Transition.fade,
+                    duration: Duration(seconds: 1));
+              },
+              child: ButtonWidgets(
+                backgroundcolor: Color.fromARGB(137, 187, 186, 186),
+                text: "View All",
+                textColor: Color.fromARGB(136, 44, 44, 44),
+              ),
             ),
           ],
         ),
